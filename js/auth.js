@@ -29,20 +29,20 @@ firebase.auth().onAuthStateChanged(function (user) {
   hideItem(loading)
   if (user) {
       showUserContent(user)
-      //console.log('Usuário Autenticado')
-      //console.log(user)
+      console.log('Usuário Autenticado')
+      console.log(user)
   }
   else {
       showAuth()
-      //console.log('Usuário não não atenticado')
+      console.log('Usuário não não atenticado')
   }
 })
 
 //Função que permite ao usuário deslogar do App, catch importante para captura erros
 function signOut() {
   firebase.auth().signOut().catch(function(error) {
-      //console.log('Não foi possivel deslogar!')
-      //console.log(error)
+      console.log('Não foi possivel deslogar!')
+      console.log(error)
   })
 }
   

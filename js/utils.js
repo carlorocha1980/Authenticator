@@ -36,13 +36,13 @@ function hideItem(element) {
   element.style.display = 'none'
 }
 
-//Função destinada a apresenta a tela de usuário autenticados.
+//Função destinada a apresenta a tela de usuário autenticados. Necessário desenvolver área logada
 function showUserContent() {
   hideItem(auth)
   showItem(userContent)
 }
 
-//Função destinada a apresenta a tela de usuário não autenticados.
+//Função destinada a apresenta a tela de usuário não autenticados. Necessário desenvolver área institucional
 function showAuth() {
   hideItem(userContent)
   showItem(auth)

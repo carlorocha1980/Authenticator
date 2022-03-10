@@ -9,7 +9,8 @@ var loading = document.getElementById('loading')
 var auth = document.getElementById('auth')
 var userContent = document.getElementById('userContent')
 
-//var userEmail = document.getElementById('userEmail')
+var userEmail = document.getElementById('userEmail')
+
 
 // Alterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
@@ -37,13 +38,16 @@ function hideItem(element) {
 }
 
 //Função destinada a apresenta a tela de usuário autenticados. Necessário desenvolver área logada
-function showUserContent() {
+function showUserContent(user) {
+  userEmail.innerHTML = user.email
   hideItem(auth)
   showItem(userContent)
 }
 
 //Função destinada a apresenta a tela de usuário não autenticados. Necessário desenvolver área institucional
 function showAuth() {
+  authForm.email.value = ""
+  authForm.password.value = ""
   hideItem(userContent)
   showItem(auth)
 }

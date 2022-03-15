@@ -15,6 +15,7 @@ As definições colocada aqui serão aplicadas por padrão no App, util para org
     primeiro px é para direita, segundo para baixo, terceiro difusão*/
     box-shadow: 4px 4px 20px #888;
     padding: 20px;
+    border-radius: 20px;
 }
 
 /* para definir o padrão os elementos individuais no index.html, mantendo um bom padrão por elemento/item */
@@ -74,6 +75,10 @@ button:hover{
     background-color: aliceblue;
     color: darkslategrey;  
 }
+.unsafeButton{
+    background-color: red;
+    color: aliceblue;
+}
 
 #loading{
     position: absolute;
@@ -84,4 +89,15 @@ button:hover{
 
 p{
     margin: 4px;
+}
+
+#auth img {
+    cursor: pointer;
+    margin: 4px;
+
+}
+
+#userImg {
+    height: 40px;
+    border-radius: 100%;
 }

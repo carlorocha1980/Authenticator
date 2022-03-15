@@ -8,7 +8,7 @@
     <!--Referente ao CSS que definirá toda o estilo do Site-->
     <link rel="stylesheet" href="css/styles.css">
     <!--O link abaixo serve para adiciona o ícone ao topo do browser-->
-    <link rel="shortcut icon" href="img/studiooz_logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2Fstudiooz_logo.png?alt=media&token=55728a24-49f1-4178-abdc-c63871dbff95" type="image/x-icon">
 
     <title>Document</title>
 </head>
@@ -16,13 +16,13 @@
     <div id="app">
         <!--Está atividade serve para colocar o ícone na Primeira Divisão do App, ou seja, header-->
         <div class="center">
-            <img src="img/images.png">
+            <img src="https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2Fimages.png?alt=media&token=b29420d0-3028-492b-a1b2-713c85e0b241">
     </div>
 
     <!--Feedback de loading para o usuário logando!-->
     <!--alt é um recurso de acessibidade, pode ser utilziado de forma auditiva-->
     <div id="loading">
-        <img src="img/loading.gif" alt="Loading Animation">
+        <img src="https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2Floading.gif?alt=media&token=2adf02b9-1215-42fc-bbf7-5f6c72656108" alt="Loading Animation">
     </div>
 
     <!--Conteúdo destinado para usuários não autenticados-->
@@ -52,6 +52,13 @@
                 Não possui usuário?
                 <button onclick="toggleToRegister()" class="secondaryButton">Cadastrar conta</button>
             </p>
+        <!--Campo para alteranar senha em caso de reset-->
+            <!--toggle é utilizado para fazer uma chamada neste cenário para um JS específico, porém pode ser usado para features-->
+            <!--Pode-ser criar uma Class aternativa para definir as cores pelos CSS-->
+            <p id="passwordReset">
+                Esqueci minha senha!
+                <button onclick="sendPasswordResetEmail()" class="secondaryButton">Redefinir senha</button>
+            </p>
             <!--Pode-se criar uma classe para qualquer atividade a ser definida no CSS, nesta caso a Start Hidden é para não apresentar por default-->
             <!--toggle é utilizado para fazer uma chamada neste cenário para um JS específico, porém pode ser usado para features-->
             <!--Pode-ser criar uma Class aternativa para definir as cores pelos CSS-->
@@ -59,21 +66,38 @@
                 Já possui usuário?
                 <button onclick="toggleToAccess()" class="secondaryButton">Acessar</button>
             </p>
+            <p>
+                Ou acesse utilizando:<br>
+                <img src="https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2Fgoogle.png?alt=media&token=f2a19117-4410-4597-87f2-f2b14a269ff8" alt="Logotipo do Google" onclick="signInWithGoogle()">
+                <img src="https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2Fgithub.png?alt=media&token=c3db6cc1-b1c1-44ee-ab57-e06f78d8b187" alt="Logotipo do GitHub" onclick="signInWithGithub()">
+                <img src="https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2Ffacebook.png?alt=media&token=237a11ea-992d-455a-9137-6fdc867e0436" alt="Logotipo do Facebook" onclick="signInWithFacebook()">
+                <!--<button onclick="toggleToAcess()" class="primaryButton"></button> -->
+                </p>
+            </p>
         </div>
 
         <!--Conteúdo destinado para usuários autenticados-->
         <div id="userContent" class="startHidden">
             <hr>
             <div id="userInfo" class="center">
+                <img id="userImg">
+                <p id="userName"></p>
                 <p id="userEmail"> </p>
+                <p id="emailVerified"></p>
+                <div id="sendEmailVerificationDiv">
+                    <button class="secondaryButton" onclick="sendEmailVerification()">Verificar e-mail</button>
+                </div>
                 <p>Autenticado com Sucesso</p>
-                <button onclick="signOut()" class="primaryButton">Sair</button>
+                    <button onclick="updateUserInfo()" class="primaryButton">Atualizar Informações</button>
+                    <button onclick="signOut()" class="primaryButton">Sair</button>
+                    <p><button onclick="deleteUserAccount()" class="unsafeButton">Excluir Conta</button></p>
             </div>
         </div>
         
         <!--Recursos do Firebase-->
         <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+    
         
         <!--Nossa programação em JavaScript-->
         <script src="js/firebase.js"></script>

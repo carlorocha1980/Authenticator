@@ -1,4 +1,4 @@
-// Defindo referências para elementos da página, qualquer elemento que quiser uma ação em JS no seu APP.
+// Definindo referências para elementos da página, qualquer elemento que quiser uma ação em JS no seu APP.
 var authForm = document.getElementById('authForm')
 var authFormTitle = document.getElementById('authFormTitle')
 var register = document.getElementById('register')
@@ -12,6 +12,10 @@ var sendEmailVerificationDiv = document.getElementById('sendEmailVerificationDiv
 var passwordReset = document.getElementById('passwordReset')
 var userName = document.getElementById('userName')
 var userImg = document.getElementById('userImg')
+
+var todoForm = document.getElementById('todoForm')
+var todoCount = document.getElementById('todoCount')
+var ulTodoList = document.getElementById('ulTodoList')
 
 // Alterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
@@ -42,6 +46,7 @@ function hideItem(element) {
 }
 
 //Função destinada a apresenta a tela de usuário autenticados. Necessário desenvolver área logada
+//Mostrar conteúdo para usuários autenticados
 function showUserContent(user) {
   console.log(user)
   if(user.providerData[0].providerId != 'password'){
@@ -57,11 +62,17 @@ function showUserContent(user) {
       }
   }
   
-  //Utilizando dados do Google Authentication
+  //Utilizando dados do usuário, salvos no Google Authentication válido para qualquer tipo de login.
   userImg.src = user.photoURL ? user.photoURL : 'https://firebasestorage.googleapis.com/v0/b/studio-oz.appspot.com/o/public%2Fimg%2FunknownUser.png?alt=media&token=4a58a4ac-0845-4351-b3e3-2eafdb5d477c'
   userName.innerHTML = user.displayName ? user.displayName : 'Usuário Visitante'
   userEmail.innerHTML = user.email
   hideItem(auth)
+  
+  //Utilizar informações do DB para apresentar ao usuário autênticado
+  dbRefUsers.child(firebase.auth().currentUser.uid).on('value', function (dataSnaphot){
+    fillTodoList(dataSnaphot)
+  })
+
   showItem(userContent)
 }
 
@@ -99,3 +110,10 @@ var actionCodeSettings = {
 }
 
 //Função para atualizar foto do usuário
+
+
+//Referências para utilizar base de dados
+//Ref. para o Realtime Database
+var database = firebase.database()
+//Ref. to use Firebase Authenticatior, necessário para alinhar usuário ao código.toto
+var dbRefUsers = database.ref('users')
